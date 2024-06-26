@@ -1,0 +1,27 @@
+/* Sidebar.css */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #f8f9fa;
+    transition: left 0.3s;
+    z-index: 1040;
+    padding: 15px;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sidebar-header button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+}
