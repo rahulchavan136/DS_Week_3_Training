@@ -11,6 +11,7 @@ const PaymentForm = ({ loans, onAddPayment }) => {
         onAddPayment(loanId, paymentAmount);
         setNewPaymentAmount('');
     };
+    
 
     return (
         <Card className="mt-4">
@@ -20,10 +21,10 @@ const PaymentForm = ({ loans, onAddPayment }) => {
             <Card.Body>
                 <Form>
                     <Row>
-                        <Col md={6}>
+                        <Col md={4}>
                             <Form.Group controlId="selectLoan">
-                                <Form.Label>Select Loan</Form.Label>
-                                <Form.Control
+                                <Form.Label>Select Loan</Form.Label><br />
+                                <select style={{padding:"6px", paddingRight:"200px",border:"0.3px solid gray", borderRadius:"5px"}}
                                     as="select"
                                     value={selectedLoanId}
                                     onChange={(e) => setSelectedLoanId(e.target.value)}
@@ -34,10 +35,10 @@ const PaymentForm = ({ loans, onAddPayment }) => {
                                             Loan ID: {loan.id} (${loan.amount.toFixed(2)})
                                         </option>
                                     ))}
-                                </Form.Control>
+                                </select>
                             </Form.Group>
                         </Col>
-                        <Col md={6}>
+                        <Col md={4}>
                             <Form.Group controlId="paymentAmount">
                                 <Form.Label>Payment Amount</Form.Label>
                                 <Form.Control
@@ -47,6 +48,17 @@ const PaymentForm = ({ loans, onAddPayment }) => {
                                     placeholder="Enter payment amount"
                                 />
                             </Form.Group>
+                        </Col>
+                        <Col md={4}>
+                            {/* <Form.Group controlId="paymentAmount">
+                                <Form.Label>Payment Amount</Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    value={newPaymentAmount}
+                                    onChange={(e) => setNewPaymentAmount(e.target.value)}
+                                    placeholder="Enter payment amount"
+                                />
+                            </Form.Group> */}
                         </Col>
                     </Row>
                     <div className="d-flex justify-content-end mt-3">

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Card, Button, Form, Row, Col } from 'react-bootstrap';
+import { Card, Button, Form, Row, Col  } from 'react-bootstrap';
 
 const LoanForm = ({ onAddLoan }) => {
     const [newLoanAmount, setNewLoanAmount] = useState('');
     const [fullName, setFullName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [userContactNumber, setUserContactNumber] = useState('');
+
+
     const [selectedInterestRate, setSelectedInterestRate] = useState('');
 
     const handleAddLoan = () => {
@@ -11,11 +15,15 @@ const LoanForm = ({ onAddLoan }) => {
             amount: parseFloat(newLoanAmount),
             interestRate: parseFloat(selectedInterestRate),
             fullName: fullName,
+            userEmail:userEmail,
+            userContactNumber:userContactNumber
         };
         onAddLoan(newLoan);
         setNewLoanAmount('');
         setSelectedInterestRate('');
-        setFullName(''); // Reset full name
+        setFullName(''); 
+        setUserEmail('');
+        setUserContactNumber("")
     };
 
     return (
@@ -28,15 +36,39 @@ const LoanForm = ({ onAddLoan }) => {
                     <Row>
                         <Col md={4}>
                             <Form.Group controlId="fullName">
-                                <Form.Label>Your Full Name</Form.Label>
+                                <Form.Label>User Full Name</Form.Label>
                                 <Form.Control
                                     type="text"
                                     value={fullName}
                                     onChange={(e) => setFullName(e.target.value)}
-                                    placeholder="Enter Your Full Name"
+                                    placeholder="Enter User Full Name"
                                 />
                             </Form.Group>
                         </Col>
+                        <Col md={4}>
+                            <Form.Group controlId="userEmail">
+                                <Form.Label>User Email Id</Form.Label>
+                                <Form.Control
+                                    type="email"
+                                    value={userEmail}
+                                    onChange={(e) => setUserEmail(e.target.value)}
+                                    placeholder="Enter User Email"
+                                />
+                            </Form.Group>
+                        </Col>
+                        <Col md={4}>
+                            <Form.Group controlId="userContactNumber">
+                                <Form.Label>User Contact Number</Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    value={userContactNumber}
+                                    onChange={(e) => setUserContactNumber(e.target.value)}
+                                    placeholder="Enter Contact Number"
+                                />
+                            </Form.Group>
+                        </Col>
+                        </Row><br />
+                        <Row> 
                         <Col md={4}>
                             <Form.Group controlId="newLoanAmount">
                                 <Form.Label>Loan Amount</Form.Label>
@@ -50,18 +82,19 @@ const LoanForm = ({ onAddLoan }) => {
                         </Col>
                         <Col md={4}>
                             <Form.Group controlId="newLoanInterestRate">
-                                <Form.Label>Interest Rate (%)</Form.Label>
-                                <Form.Control
+                                <Form.Label>Interest Rate (%)</Form.Label> <br />
+
+                                <select style={{padding:"6px", paddingRight:"50px",border:"0.3px solid gray", borderRadius:"5px"}}
                                     as="select"
                                     value={selectedInterestRate}
                                     onChange={(e) => setSelectedInterestRate(e.target.value)}
                                 >
-                                    <option value="">Select interest rate...</option>
+                                    <option value="">Select interest rate..</option>
                                     {[10, 11, 12, 13, 14, 15, 16, 17, 18].map(rate => (
                                         <option key={rate} value={rate}>{rate}%</option>
                                     ))}
-                                </Form.Control>
-                            </Form.Group>
+                                </select>
+                            </Form.Group> 
                         </Col>
                     </Row>
                     <div className="d-flex justify-content-end mt-3">
